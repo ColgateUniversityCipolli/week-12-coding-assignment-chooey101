@@ -1,0 +1,300 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlsng}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hldef}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage[margin=1.0in]{geometry} % To set margins
+\usepackage{amsmath}  % This allows me to use the align functionality.
+                      % If you find yourself trying to replicate
+                      % something you found online, ensure you're
+                      % loading the necessary packages!
+\usepackage{amsfonts} % Math font
+\usepackage{fancyvrb}
+\usepackage{hyperref} % For including hyperlinks
+\usepackage[shortlabels]{enumitem}% For enumerated lists with labels specified
+                                  % We had to run tlmgr_install("enumitem") in R
+\usepackage{float}    % For telling R where to put a table/figure
+\usepackage{natbib}        %For the bibliography
+\bibliographystyle{apalike}%For the bibliography
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+\begin{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item A group of researchers is running an experiment over the course of 30 months, 
+with a single observation collected at the end of each month. Let $X_1, ..., X_{30}$
+denote the observations for each month. From prior studies, the researchers know that
+\[X_i \sim f_X(x),\]
+but the mean $\mu_X$ is unknown, and they wish to conduct the following test
+\begin{align*}
+H_0&: \mu_X = 0\\
+H_a&: \mu_X > 0.
+\end{align*}
+At month $k$, they have accumulated data $X_1, ..., X_k$ and they have the 
+$t$-statistic
+\[T_k = \frac{\bar{X} - 0}{S_k/\sqrt{n}}.\]
+The initial plan was to test the hypotheses after all data was collected (at the 
+end of month 30), at level $\alpha=0.05$. However, conducting the experiment is 
+expensive, so the researchers want to ``peek" at the data at the end of month 20 
+to see if they can stop it early. That is, the researchers propose to check 
+whether $t_{20}$ provides statistically discernible support for the alternative. 
+If it does, they will stop the experiment early and report support for the 
+researcher's alternative hypothesis. If it does not, they will continue to month 
+30 and test whether $t_{30}$ provides statistically discernible support for the
+alternative.
+
+\begin{enumerate}
+  \item What values of $t_{20}$ provide statistically discernible support for the
+  alternative hypothesis? - \textbf{At month 20, because we obtained a critical t-value using the right-tailed test, we can reject the null hypothesis if T20 $>$ $1.729$.}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hldef{alpha} \hlkwb{=} \hlnum{0.05}
+\hldef{t20.crit} \hlkwb{<-} \hlkwd{qt}\hldef{(}\hlnum{1}\hlopt{-}\hldef{alpha,} \hlkwc{df} \hldef{=} \hlnum{20} \hlopt{-} \hlnum{1}\hldef{)}
+\hldef{t20.crit}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.729133
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \item What values of $t_{30}$ provide statistically discernible support for the
+  alternative hypothesis? - \textbf{At month 30, using the same right tailed test to obtain a critical t-value, we can reject the null hypothesis if T30 $>$ $1.699$.}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hldef{alpha} \hlkwb{=} \hlnum{0.05}
+\hldef{t30.crit} \hlkwb{<-} \hlkwd{qt}\hldef{(}\hlnum{1}\hlopt{-}\hldef{alpha,} \hlkwc{df} \hldef{=} \hlnum{30} \hlopt{-} \hlnum{1}\hldef{)}
+\hldef{t30.crit}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.699127
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \item Suppose $f_X(x)$ is a Laplace distribution with $a=0$ and $b=4.0$.
+  Conduct a simulation study to assess the Type I error rate of this approach.\\
+  \textbf{Note:} You can use the \texttt{rlaplace()} function from the \texttt{VGAM}
+  package for \texttt{R} \citep{VGAM}. - \textbf{By conducting a simulation study under the assumtion $f_X(x)$ is a Laplace distribution with $a=0$ and $b=4.0$, we were able to calculate an overall rate of type 1 errors of $7.19$ Percent. }
+  
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hldef{n.sim} \hlkwb{=} \hlnum{10000}
+\hlcom{#1c}
+
+\hldef{sim.tbl} \hlkwb{<-} \hlkwd{tibble}\hldef{(}
+\hlkwc{early_reject} \hldef{=} \hlkwd{logical}\hldef{(n.sim),}
+\hlkwc{overall}      \hldef{=} \hlkwd{logical}\hldef{(n.sim)}
+\hldef{)}
+
+
+\hlkwa{for} \hldef{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hldef{n.sim) \{}
+\hldef{x} \hlkwb{<-} \hlkwd{rlaplace}\hldef{(}\hlnum{30}\hldef{,} \hlkwc{location} \hldef{=} \hlnum{0}\hldef{,} \hlkwc{scale} \hldef{=} \hlnum{4}\hldef{)}
+
+\hlcom{# interim look}
+\hldef{t20} \hlkwb{<-} \hlkwd{mean}\hldef{(x[}\hlnum{1}\hlopt{:}\hlnum{20}\hldef{])} \hlopt{/} \hldef{(}\hlkwd{sd}\hldef{(x[}\hlnum{1}\hlopt{:}\hlnum{20}\hldef{])} \hlopt{/} \hlkwd{sqrt}\hldef{(}\hlnum{20}\hldef{))}
+\hldef{sim.tbl}\hlopt{$}\hldef{early_reject[i]} \hlkwb{<-} \hldef{(t20} \hlopt{>} \hldef{t20.crit)}
+
+\hlkwa{if} \hldef{(sim.tbl}\hlopt{$}\hldef{early_reject[i]) \{}
+  \hlcom{# if rejected early, overall is also TRUE}
+  \hldef{sim.tbl}\hlopt{$}\hldef{overall[i]} \hlkwb{<-} \hlnum{TRUE}
+\hldef{\}} \hlkwa{else} \hldef{\{}
+  \hlcom{# final look}
+  \hldef{t30} \hlkwb{<-} \hlkwd{mean}\hldef{(x)} \hlopt{/} \hldef{(}\hlkwd{sd}\hldef{(x)} \hlopt{/} \hlkwd{sqrt}\hldef{(}\hlnum{30}\hldef{))}
+  \hldef{sim.tbl}\hlopt{$}\hldef{overall[i]} \hlkwb{<-} \hldef{(t30} \hlopt{>} \hldef{t30.crit)}
+\hldef{\}}
+\hldef{\}}
+
+
+\hldef{sim.tbl.rates} \hlkwb{<-} \hldef{sim.tbl |>}
+\hlkwd{mutate}\hldef{(}\hlkwc{late_reject} \hldef{=} \hlopt{!}\hldef{early_reject} \hlopt{&} \hldef{overall)|>}
+\hlkwd{summarize}\hldef{(}
+  \hlkwc{early_rate}   \hldef{=} \hlkwd{mean}\hldef{(early_reject),}
+  \hlkwc{late_rate}    \hldef{=} \hlkwd{mean}\hldef{(late_reject),}
+  \hlkwc{overall_rate} \hldef{=} \hlkwd{mean}\hldef{(overall)}
+\hldef{)}
+\hldef{sim.tbl.rates}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 1 x 3
+##   early_rate late_rate overall_rate
+##        <dbl>     <dbl>        <dbl>
+## 1     0.0491    0.0273       0.0764
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \item \textbf{Optional Challenge:} Can you find a value of $\alpha<0.05$ that yields a 
+  Type I error rate of 0.05? 
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Question 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \item Perform a simulation study to assess the robustness of the $T$ test. 
+  Specifically, generate samples of size $n=15$ from the Beta(10,2), Beta(2,10), 
+  and Beta(10,10) distributions and conduct the following hypothesis tests against 
+  the actual mean for each case (e.g., $\frac{10}{10+2}$, $\frac{2}{10+2}$, and 
+  $\frac{10}{10+10}$). 
+  
+
+  \begin{enumerate}
+    \item What proportion of the time do we make an error of Type I for a
+    left-tailed test? - \textbf{The simulation test we have performed below suggests that we make a type I error while using a left-tailed test $3.02$\% of the time for the Beta(10,2) distribution, $7.81$\% of the time for the Beta(2,10) distribution, and $5.18$\% of the time for the Beta(10,10) distribution.}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hldef{n_sim}      \hlkwb{<-} \hlnum{10000}
+\hldef{n}          \hlkwb{<-} \hlnum{15}
+\hldef{df}         \hlkwb{<-} \hldef{n} \hlopt{-} \hlnum{1}
+
+\hldef{tcrit_left} \hlkwb{<-} \hlkwd{qt}\hldef{(alpha,} \hlkwc{df}\hldef{=df)}
+
+\hldef{tcrit_right} \hlkwb{<-} \hlkwd{qt}\hldef{(}\hlnum{1} \hlopt{-} \hldef{alpha,} \hlkwc{df} \hldef{= df)}
+\hlcom{# two‐sided critical value}
+\hldef{tcrit_2s}   \hlkwb{<-} \hlkwd{qt}\hldef{(}\hlnum{1} \hlopt{-} \hldef{alpha}\hlopt{/}\hlnum{2}\hldef{,} \hlkwc{df} \hldef{= df)}
+
+\hlcom{#List of parameters for each distribution}
+\hldef{params} \hlkwb{<-} \hlkwd{list}\hldef{(}
+\hlkwc{Beta_10_2}  \hldef{=} \hlkwd{list}\hldef{(}\hlkwc{a}\hldef{=}\hlnum{10}\hldef{,} \hlkwc{b}\hldef{=}\hlnum{2}\hldef{,}  \hlkwc{mu}\hldef{=}\hlnum{10}\hlopt{/}\hlnum{12}\hldef{),}
+\hlkwc{Beta_2_10}  \hldef{=} \hlkwd{list}\hldef{(}\hlkwc{a}\hldef{=}\hlnum{2}\hldef{,}  \hlkwc{b}\hldef{=}\hlnum{10}\hldef{,} \hlkwc{mu}\hldef{=}\hlnum{2}\hlopt{/}\hlnum{12}\hldef{),}
+\hlkwc{Beta_10_10} \hldef{=} \hlkwd{list}\hldef{(}\hlkwc{a}\hldef{=}\hlnum{10}\hldef{,} \hlkwc{b}\hldef{=}\hlnum{10}\hldef{,}\hlkwc{mu}\hldef{=}\hlnum{0.5}\hldef{)}
+\hldef{)}
+
+\hlcom{####Rejection rate when using a left tailed test}
+\hldef{type1_rates_left} \hlkwb{<-} \hlkwd{sapply}\hldef{(params,} \hlkwa{function}\hldef{(}\hlkwc{p}\hldef{) \{}
+\hldef{rejections} \hlkwb{<-} \hlkwd{replicate}\hldef{(n_sim, \{}
+  \hldef{x}     \hlkwb{<-} \hlkwd{rbeta}\hldef{(n, p}\hlopt{$}\hldef{a, p}\hlopt{$}\hldef{b)}
+  \hldef{tstat} \hlkwb{<-} \hldef{(}\hlkwd{mean}\hldef{(x)} \hlopt{-} \hldef{p}\hlopt{$}\hldef{mu)} \hlopt{/} \hldef{(}\hlkwd{sd}\hldef{(x)} \hlopt{/} \hlkwd{sqrt}\hldef{(n))}
+  \hldef{tstat} \hlopt{<} \hldef{tcrit_left}
+\hldef{\})}
+\hlkwd{mean}\hldef{(rejections)}
+\hldef{\})}
+\hldef{type1_rates_left}
+\end{alltt}
+\begin{verbatim}
+##  Beta_10_2  Beta_2_10 Beta_10_10 
+##     0.0291     0.0766     0.0498
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+    \item What proportion of the time do we make an error of Type I for a
+    right-tailed test? - \textbf{The simulation test we have performed below suggests that we make a type I error while using a right-tailed test $7.74$\% of the time for the Beta(10,2) distribution, $2.75$\% of the time for the Beta(2,10) distribution, and $4.85$\% of the time for the Beta(10,10) distribution.}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hldef{type1_rates_right} \hlkwb{<-} \hlkwd{sapply}\hldef{(params,} \hlkwa{function}\hldef{(}\hlkwc{p}\hldef{) \{}
+\hldef{rejections} \hlkwb{<-} \hlkwd{replicate}\hldef{(n_sim, \{}
+  \hldef{x}     \hlkwb{<-} \hlkwd{rbeta}\hldef{(n, p}\hlopt{$}\hldef{a, p}\hlopt{$}\hldef{b)}
+  \hldef{tstat} \hlkwb{<-} \hldef{(}\hlkwd{mean}\hldef{(x)} \hlopt{-} \hldef{p}\hlopt{$}\hldef{mu)} \hlopt{/} \hldef{(}\hlkwd{sd}\hldef{(x)} \hlopt{/} \hlkwd{sqrt}\hldef{(n))}
+  \hlcom{# reject if t-statistic is too large}
+  \hldef{tstat} \hlopt{>} \hldef{tcrit_right}
+\hldef{\})}
+\hlkwd{mean}\hldef{(rejections)}
+\hldef{\})}
+\hldef{type1_rates_right}
+\end{alltt}
+\begin{verbatim}
+##  Beta_10_2  Beta_2_10 Beta_10_10 
+##     0.0776     0.0273     0.0469
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+    \item What proportion of the time do we make an error of Type I for a
+    two-tailed test? - \textbf{The simulation test we have performed below suggests that we make a type I error while using a two-tailed test $5.75$\% of the time for the Beta(10,2) distribution, $6.28$\% of the time for the Beta(2,10) distribution, and $5.08$\% of the time for the Beta(10,10) distribution.}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hldef{type1_rates_two} \hlkwb{<-} \hlkwd{sapply}\hldef{(params,} \hlkwa{function}\hldef{(}\hlkwc{p}\hldef{) \{}
+  \hlkwd{mean}\hldef{(}\hlkwd{replicate}\hldef{(n_sim, \{}
+    \hldef{x}     \hlkwb{<-} \hlkwd{rbeta}\hldef{(n, p}\hlopt{$}\hldef{a, p}\hlopt{$}\hldef{b)}
+    \hldef{tstat} \hlkwb{<-} \hldef{(}\hlkwd{mean}\hldef{(x)} \hlopt{-} \hldef{p}\hlopt{$}\hldef{mu)} \hlopt{/} \hldef{(}\hlkwd{sd}\hldef{(x)} \hlopt{/} \hlkwd{sqrt}\hldef{(n))}
+    \hldef{(tstat} \hlopt{< -}\hldef{tcrit_2s)} \hlopt{|} \hldef{(tstat} \hlopt{> +}\hldef{tcrit_2s)}
+  \hldef{\}))}
+\hldef{\})}
+\hldef{type1_rates_two}
+\end{alltt}
+\begin{verbatim}
+##  Beta_10_2  Beta_2_10 Beta_10_10 
+##     0.0603     0.0602     0.0551
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+    \item How does skewness of the underlying population distribution effect
+    Type I error across the test types? - \textbf{The direction skewness of each distribution appears to have a positive coorelation with the direction of the tail of each test, as the rate of type I errors occurring is the lowest for each distribution in the same direction that each distribution is skewed.}
+    \begin{table}[ht]
+\centering
+\begin{tabular}{lrrr}
+  \hline
+Distribution & Left\_Tailed & Right\_Tailed & Two\_Tailed \\ 
+  \hline
+Beta(10,2) & 0.0302 & 0.0781 & 0.0518 \\ 
+  Beta(2,10) & 0.0774 & 0.0275 & 0.0485 \\ 
+  Beta(10,10) & 0.0575 & 0.0628 & 0.0508 \\ 
+   \hline
+\end{tabular}
+\caption{Empirical Type I Error Rates by Test Type and Distribution} 
+\label{tab:type1}
+\end{table}
+  \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{enumerate}
+\bibliography{bibliography}
+\end{document}
